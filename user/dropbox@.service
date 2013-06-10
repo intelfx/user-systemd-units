@@ -6,6 +6,7 @@ Description=Dropbox daemon on display %I
 [Service]
 Type=simple
 ExecStart=/usr/bin/dropboxd
+Restart=always
 
 [Install]
 WantedBy=graphic@%i.target

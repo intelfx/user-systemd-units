@@ -8,6 +8,7 @@ After=kdeinit@%i.service
 Type=forking
 ExecStartPre=/usr/bin/synaptikscfg init
 ExecStart=/usr/bin/synaptiks
+Restart=always
 
 [Install]
 WantedBy=graphic@%i.target
