@@ -1,0 +1,15 @@
+.include need-xserver@.service
+
+[Unit]
+Description=Nepomuk on display %I
+After=kdeinit@%i.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/nepomukserver
+
+KillMode=process
+KillSignal=SIGHUP
+
+[Install]
+WantedBy=graphic@%i.target

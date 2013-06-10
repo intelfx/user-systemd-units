@@ -1,0 +1,11 @@
+[Unit]
+Description=Move certain folders to a volatile storage
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/home/intelfx/bin/pack.sh
+ExecStop=/home/intelfx/bin/pack.sh save-reset
+
+[Install]
+WantedBy=basic.target

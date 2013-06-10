@@ -1,0 +1,12 @@
+.include need-xserver@.service
+
+[Unit]
+Description=Bluedevil on display %I
+After=kdeinit@%i.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/bluedevil-monolithic
+
+[Install]
+WantedBy=graphic@%i.target

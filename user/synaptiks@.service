@@ -1,0 +1,13 @@
+.include need-xserver@.service
+
+[Unit]
+Description=Synaptiks on display %I
+After=kdeinit@%i.service
+
+[Service]
+Type=forking
+ExecStartPre=/usr/bin/synaptikscfg init
+ExecStart=/usr/bin/synaptiks
+
+[Install]
+WantedBy=graphic@%i.target

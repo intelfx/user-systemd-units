@@ -1,0 +1,7 @@
+# A "sync" target: it does not want anything,
+# it's other units who Wants= it and specify
+# Before= or After= on this target
+# in order to order themselves.
+
+[Unit]
+Description=KDE on display %I

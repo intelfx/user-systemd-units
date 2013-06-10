@@ -1,0 +1,12 @@
+.include need-xserver@.service
+
+[Unit]
+Description=Klipper on display %I
+After=kdeinit@%i.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/klipper
+
+[Install]
+WantedBy=graphic@%i.target

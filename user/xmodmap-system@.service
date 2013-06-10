@@ -1,0 +1,15 @@
+.include need-xserver@.service
+
+[Unit]
+Description=Merge /etc/X11/xinit/.Xmodmap on display %I
+ConditionFileNotEmpty=/etc/X11/xinit/.Xmodmap
+
+After=xmodmap-system@%i.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xmodmap /etc/X11/xinit/.Xmodmap
+RemainAfterExit=yes
+
+[Install]
+WantedBy=graphic@%i.target

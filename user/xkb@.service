@@ -1,0 +1,15 @@
+.include need-xserver@.service
+
+[Unit]
+Description=Set XKB mappings %I
+
+Before=xmodmap-system@%i.service
+Before=xmodmap-user@%i.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/setxkbmap -layout "us,ru(winkeys)" -option "grp:caps_toggle"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=graphic@%i.target

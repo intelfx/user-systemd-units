@@ -1,0 +1,11 @@
+.include need-xserver@.service
+
+[Unit]
+Description=mount-tray on display %I
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mount-tray
+
+[Install]
+WantedBy=graphic@%i.target

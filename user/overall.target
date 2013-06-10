@@ -1,0 +1,7 @@
+[Unit]
+Description=Non-graphical part of user session
+Requires=basic.target
+AllowIsolate=yes
+
+[Install]
+WantedBy=default.target

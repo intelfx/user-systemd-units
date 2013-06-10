@@ -1,0 +1,14 @@
+
+#
+# X server "require" template for a service unit.
+#
+
+# need-xserver@.service is a helper template partial unit which declares
+# a dependency to an X server for a service unit and sets its $DISPLAY.
+
+[Unit]
+Requires=xserver@%i.service
+After=xserver@%i.service
+
+[Service]
+Environment=DISPLAY=%I

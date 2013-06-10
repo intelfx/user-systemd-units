@@ -1,0 +1,13 @@
+.include need-xserver@.service
+
+[Unit]
+Description=Merge /etc/X11/xinit/.Xresources on display %I
+ConditionFileNotEmpty=/etc/X11/xinit/.Xresources
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xrdb -merge /etc/X11/xinit/.Xresources
+RemainAfterExit=yes
+
+[Install]
+WantedBy=graphic@%i.target

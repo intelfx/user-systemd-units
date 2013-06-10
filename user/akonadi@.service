@@ -1,0 +1,13 @@
+.include need-xserver@.service
+
+[Unit]
+Description=Akonadi on display %I
+After=kdeinit@%i.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/akonadictl start
+ExecStop=/usr/bin/akonadictl stop
+
+[Install]
+WantedBy=graphic@%i.target

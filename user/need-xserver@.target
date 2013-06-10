@@ -1,0 +1,11 @@
+
+#
+# X server "require" template for a target unit
+#
+
+# need-xserver@.target is a helper template partial unit which declares
+# a dependency to an X server for a target unit.
+
+[Unit]
+Requires=xserver@%i.service
+After=xserver@%i.service
