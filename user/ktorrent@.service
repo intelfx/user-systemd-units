@@ -1,0 +1,13 @@
+.include need-xserver@.service
+
+[Unit]
+Description=KTorrent on display %I
+After=kdeinit@%i.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/ktorrent
+Restart=always
+
+[Install]
+WantedBy=graphic@%i.target
