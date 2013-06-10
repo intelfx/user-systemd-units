@@ -19,7 +19,7 @@ After=basic.target
 
 [Service]
 Type=notify
-ExecStart=/usr/bin/xorg-launch-helper /usr/bin/Xvnc %I -geometry 1366x768 -rfbwait 30000 -rfbauth %h/.vnc/passwd 
+ExecStart=/usr/bin/xorg-launch-helper /usr/bin/Xvnc %I -geometry 1366x768 -rfbwait 30000 -deferUpdate 30 -rfbauth %h/.vnc/passwd
 Restart=always
 RestartSec=1
 
