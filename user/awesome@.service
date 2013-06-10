@@ -6,7 +6,7 @@ Documentation=man:awesome(1)
 
 [Service]
 Type=simple
-ExecStartPre=-/home/intelfx/.config/awesome/generate-menu.sh
+ExecStartPre=-/bin/bash -c "exec /usr/bin/xdg_menu --format awesome --root-menu /etc/xdg/menus/arch-applications.menu > %h/.config/awesome/xdgmenu.lua"
 ExecStart=/usr/bin/awesome
 ExecStartPost=-/usr/bin/xsetroot -cursor_name left_ptr
 Restart=always
