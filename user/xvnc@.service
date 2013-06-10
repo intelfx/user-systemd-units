@@ -21,7 +21,7 @@ After=basic.target
 Type=notify
 ExecStart=/usr/bin/xorg-launch-helper /usr/bin/Xvnc %I -geometry 1366x768 -rfbwait 30000 -rfbauth %h/.vnc/passwd 
 Restart=always
-RestartSec=10
+RestartSec=1
 
 [Install]
 Alias=xserver@%i.service
