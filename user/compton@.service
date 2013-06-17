@@ -6,7 +6,7 @@ Documentation=man:compton(1)
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/compton -cCf -I 0.05 -O 0.05 -D 5 -b
+ExecStart=/usr/bin/compton -f -D 5 -b
 
 [Install]
 WantedBy=graphic@%i.target
