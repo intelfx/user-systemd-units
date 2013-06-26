@@ -8,6 +8,7 @@ After=kdeinit@%i.target
 Type=forking
 ExecStart=/usr/bin/akonadictl start
 ExecStop=/usr/bin/akonadictl stop
+SuccessExitStatus=255
 
 [Install]
 WantedBy=graphic@%i.target
