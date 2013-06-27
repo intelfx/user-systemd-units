@@ -1,6 +1,6 @@
 [Unit]
 Description=User Manager for %u
-After=systemd-user-sessions.service
+After=systemd-user-sessions.service getty.target
 
 [Service]
 User=%I
