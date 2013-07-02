@@ -1,0 +1,12 @@
+.include need-xserver@.service
+
+[Unit]
+Description=Start xbindkeys on display %I
+ConditionFileNotEmpty=%h/.xbindkeysrc
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/xbindkeys -n
+
+[Install]
+WantedBy=graphic@%i.target
