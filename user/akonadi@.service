@@ -9,6 +9,7 @@ Type=forking
 ExecStart=/usr/bin/akonadictl start
 ExecStop=/usr/bin/akonadictl stop
 SuccessExitStatus=255
+KillMode=none
 
 [Install]
 WantedBy=graphic@%i.target
