@@ -1,0 +1,12 @@
+.include need-xserver@.service
+
+[Unit]
+Description=PulseAudio initialization on display %I
+After=dbus.service
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/start-pulseaudio-x11
+
+[Install]
+WantedBy=graphic@%i.target
