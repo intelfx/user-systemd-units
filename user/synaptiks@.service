@@ -1,12 +1,11 @@
 .include need-xserver@.service
 
 [Unit]
-Description=Synaptiks on display %I
-After=kdeinit@%i.service
+Description=Synaptiks GUI on display %I
+After=kdeinit@%i.service synaptikscfg@%i.service
 
 [Service]
 Type=forking
-ExecStartPre=/usr/bin/synaptikscfg init
 ExecStart=/usr/bin/synaptiks
 Restart=always
 
