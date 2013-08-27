@@ -1,5 +1,5 @@
 [Unit]
-Description=D-Bus System Message Bus Socket
+Description=D-Bus Session Message Bus Socket
 
 [Socket]
 ListenStream=%t/dbus/user_bus_socket
