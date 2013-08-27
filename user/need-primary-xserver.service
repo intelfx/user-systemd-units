@@ -1,0 +1,14 @@
+
+#
+# Primary X server "require" template for a service unit.
+#
+
+# need-primary-xserver.service is a helper template partial unit which declares
+# a dependency to an X server for a service unit and sets its $DISPLAY.
+
+[Unit]
+Requires=primary-xserver.target
+After=primary-xserver.target
+
+[Service]
+EnvironmentFile=%t/primary-xserver.info

@@ -1,9 +1,9 @@
+.include need-primary-xserver.service
+
 [Unit]
 Description=D-Bus Session Message Bus
-Requires=basic.target primary-xserver.target
-After=basic.target primary-xserver.target
+Requires=basic.target
 
 [Service]
 ExecStart=/usr/bin/dbus-daemon --session --address=systemd: --nofork --systemd-activation
 ExecReload=/usr/bin/dbus-send --print-reply --session --type=method_call --dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig
-EnvironmentFile=%t/primary-xserver.info
