@@ -8,7 +8,7 @@ Before=xmodmap-user@%i.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/setxkbmap -layout "us,ru(winkeys)" -option "grp:caps_toggle"
+ExecStart=/usr/bin/setxkbmap -layout "us,ru(winkeys)" -option "grp:caps_toggle,grp_led:scroll"
 RemainAfterExit=yes
 
 [Install]
