@@ -2,7 +2,8 @@
 
 [Unit]
 Description=Bluedevil on display %I
-After=kdeinit@%i.target
+After=kdeinit@%i.target bluetooth.target
+StopWhenUnneeded=yes
 
 [Service]
 Type=forking
@@ -10,4 +11,4 @@ ExecStart=/usr/bin/bluedevil-monolithic
 Restart=always
 
 [Install]
-WantedBy=graphic@%i.target
+WantedBy=bluetooth.target
