@@ -18,5 +18,7 @@ ExecStart=/bin/bash --login -c "exec /usr/lib/systemd/systemd --user"
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/dbus/user_bus_socket
 Environment=SHELL=%s
 
+Restart=on-failure
+
 [Install]
 WantedBy=graphical.target
