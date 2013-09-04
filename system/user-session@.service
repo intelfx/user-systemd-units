@@ -1,6 +1,6 @@
 [Unit]
 Description=User Manager for %I
-After=systemd-user-sessions.service
+After=systemd-user-sessions.service home.mount dbus.service
 
 [Service]
 User=%I
