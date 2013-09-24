@@ -3,6 +3,7 @@
 [Unit]
 Description=Awesome WM on display %I
 Documentation=man:awesome(1)
+After=xrdb-system@%i.service xrdb-user@%i.service
 
 [Service]
 Type=simple
