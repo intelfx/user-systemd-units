@@ -25,3 +25,4 @@ RestartSec=10
 
 [Install]
 Alias=xserver@%i.service
+WantedBy=graphic@%i.target

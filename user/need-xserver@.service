@@ -7,7 +7,7 @@
 # a dependency to an X server for a service unit and sets its $DISPLAY.
 
 [Unit]
-Requires=xserver@%i.service
+Requisite=xserver@%i.service
 After=xserver@%i.service
 
 [Service]

@@ -4,7 +4,7 @@
 
 [Unit]
 Description=Declare primary X server at %I
-Requires=xserver@%i.service
+Requisite=xserver@%i.service
 After=xserver@%i.service
 
 [Service]
