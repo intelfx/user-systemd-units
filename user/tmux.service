@@ -1,0 +1,13 @@
+[Unit]
+Description=Persistent tmux session
+Documentation=man:tmux(1)
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/tmux new-session -s %u -d
+ExecStop=-/usr/bin/tmux kill-server
+KillMode=control-group
+Restart=always
+
+[Install]
+WantedBy=overall.target
