@@ -1,0 +1,105 @@
+#!/bin/bash
+#
+# LightDM-based wrapper to run around X sessions.
+
+exec > >(systemd-cat -t xsession$DISPLAY)
+
+echo "Starting X session (session '$XDG_SESSION_ID' seat '$XDG_SEAT')"
+
+
+# Load profile
+for file in "/etc/profile" "$HOME/.bash_profile" "/etc/xprofile" "$HOME/.xprofile"; do
+	if [[ -f "$file" ]]; then
+		echo "Loading profile script: $file"
+		. "$file"
+	fi
+done
+
+# Load resources
+for file in "/etc/X11/Xresources" "$HOME/.Xresources"; do
+    if [[ -f "$file" ]]; then
+        echo "Loading X resource: $file"
+        xrdb -merge "$file"
+    fi
+done
+
+
+# Load keymaps
+for file in "/etc/X11/Xkbmap" "$HOME/.Xkbmap"; do
+    if [[ -f "$file" ]]; then
+        echo "Loading XKB keymap: $file"
+		setxkbmap $(cat "$file")
+        XKB_IN_USE=yes
+    fi
+done
+
+
+# Load xmodmap if not using XKB
+if [[ -z "$XKB_IN_USE" ]]; then
+    for file in "/etc/X11/Xmodmap" "$HOME/.Xmodmap"; do
+        if [[ -f "$file" ]]; then
+           echo "Loading X modmap: $file"
+           xmodmap "$file"
+        fi
+    done
+fi
+
+unset XKB_IN_USE
+
+
+# Run all system xinitrc shell scripts.
+xinitdir="/etc/X11/xinit/xinitrc.d"
+if [[ -d "$xinitdir" ]]; then
+    for script in $xinitdir/*; do
+        if [[ -x "$script" && ! -d "$script" ]]; then
+			echo "Loading xinit script: $script"
+            . "$script"
+        fi
+    done
+fi
+
+
+# Read environment from `systemd --user`.
+echo "Reading \`systemd --user\` environment"
+
+while IFS="=" read name value; do
+	eval "test \$$name || export $name='$value'"
+done < <(systemctl --user show-environment)
+
+
+# Run the `systemd --user` session.
+systemd_envfile="$XDG_RUNTIME_DIR/$DISPLAY-environment"
+systemd_target="graphic@$DISPLAY.target"
+
+echo "Starting \`systemd --user\` unit $systemd_target"
+
+printenv > "$systemd_envfile"
+systemctl --user start "$systemd_target"
+
+
+# Run the session itself.
+
+echo "Starting session '$session'"
+
+case "$session" in
+	failsafe)
+		xterm -geometry 80x24-0-0
+		;;
+
+	custom)
+		"$HOME/.xsession"
+		;;
+	
+	*)
+		"$@"
+		;;
+esac
+
+
+# Stop the `systemd --user` session.
+echo "Main application exited, stopping \`systemd --user\` session"
+
+systemctl --user stop "$systemd_target"
+rm -f "$systemd_envfile"
+
+echo "Session wrapper done"
