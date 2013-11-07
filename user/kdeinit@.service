@@ -8,8 +8,8 @@ After=dbus.service
 
 [Service]
 Type=forking
-ExecStartPre=/usr/bin/systemctl --user set-environment DE=kde KDE_FULL_SESSION=true KDE_SESSION_VERSION=4 KDE_SESSION_UID=%U XDG_CURRENT_DESKTOP=KDE
 ExecStart=/usr/lib/kde4/libexec/start_kdeinit_wrapper +kcminit_startup
+# starting `kwrapper4 ksmserver` is deliberately skipped
 ExecStop=/usr/bin/kdeinit4_shutdown
 TimeoutStopSec=5
 
