@@ -1,4 +1,4 @@
-.include need-xserver@.service
+.include need-session@.service
 
 [Unit]
 Description=Set XKB mappings %I
@@ -12,4 +12,4 @@ ExecStart=/usr/bin/setxkbmap -layout "us,ru(winkeys)" -option "grp:caps_toggle,g
 RemainAfterExit=yes
 
 [Install]
-WantedBy=graphic@%i.target
+WantedBy=graphic@.target

@@ -1,11 +1,11 @@
-.include need-xserver@.service
+.include need-session@.service
 
 [Unit]
-Description=mount-tray on display %I
+Description=mount-tray for session %I
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/mount-tray
 
 [Install]
-WantedBy=graphic@%i.target
+WantedBy=graphic@.target

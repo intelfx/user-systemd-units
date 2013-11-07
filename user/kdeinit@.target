@@ -4,4 +4,4 @@
 # in order to order themselves.
 
 [Unit]
-Description=KDE on display %I
+Description=KDE for session %I

@@ -1,7 +1,7 @@
-.include need-xserver@.service
+.include need-session@.service
 
 [Unit]
-Description=Start xbindkeys on display %I
+Description=Start xbindkeys for session %I
 ConditionFileNotEmpty=%h/.xbindkeysrc
 
 [Service]
@@ -9,4 +9,4 @@ Type=simple
 ExecStart=/usr/bin/xbindkeys -n
 
 [Install]
-WantedBy=graphic@%i.target
+WantedBy=graphic@.target

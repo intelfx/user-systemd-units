@@ -1,9 +1,4 @@
-.include need-xserver@.target
-
 [Unit]
-Description=Display %I for user session
+Description=Graphical session %I
 Requires=overall.target
 AllowIsolate=yes
-
-[Install]
-WantedBy=default.target

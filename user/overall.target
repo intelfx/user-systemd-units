@@ -1,5 +1,5 @@
 [Unit]
-Description=Non-graphical part of user session
+Description=Persistent non-session-bound user services
 Requires=basic.target
 AllowIsolate=yes
 

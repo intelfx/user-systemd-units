@@ -1,7 +1,7 @@
-.include need-xserver@.service
+.include need-session@.service
 
 [Unit]
-Description=Akonadi on display %I
+Description=Akonadi for session %I
 After=kdeinit@%i.target
 
 [Service]
@@ -9,7 +9,6 @@ Type=forking
 ExecStart=/usr/bin/akonadictl start
 ExecStop=/usr/bin/akonadictl stop
 SuccessExitStatus=255
-KillMode=none
 
 [Install]
-WantedBy=graphic@%i.target
+WantedBy=graphic@.target

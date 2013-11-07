@@ -1,7 +1,7 @@
-.include need-xserver@.service
+.include need-session@.service
 
 [Unit]
-Description=Klipper on display %I
+Description=Klipper for session %I
 After=kdeinit@%i.target
 
 [Service]
@@ -10,4 +10,4 @@ ExecStart=/usr/bin/klipper
 Restart=always
 
 [Install]
-WantedBy=graphic@%i.target
+WantedBy=graphic@.target

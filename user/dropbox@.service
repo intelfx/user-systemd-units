@@ -1,7 +1,7 @@
-.include need-xserver@.service
+.include need-session@.service
 
 [Unit]
-Description=Dropbox daemon on display %I
+Description=Dropbox daemon for session %I
 
 [Service]
 Type=simple
@@ -9,4 +9,4 @@ ExecStart=/usr/bin/dropboxd
 Restart=always
 
 [Install]
-WantedBy=graphic@%i.target
+WantedBy=graphic@.target

@@ -1,7 +1,7 @@
-.include need-xserver@.service
+.include need-session@.service
 
 [Unit]
-Description=Bluedevil on display %I
+Description=Bluedevil for session %I
 After=kdeinit@%i.target bluetooth.target
 StopWhenUnneeded=yes
 
@@ -11,4 +11,4 @@ ExecStart=/usr/bin/bluedevil-monolithic
 Restart=always
 
 [Install]
-WantedBy=bluetooth.target
+WantedBy=graphic@.target

@@ -1,7 +1,7 @@
-.include need-xserver@.service
+.include need-session@.service
 
 [Unit]
-Description=Configure Synaptics touchpad on display %I
+Description=Configure Synaptics touchpad for session %I
 After=kdeinit@%i.service
 
 [Service]
@@ -10,4 +10,4 @@ RemainAfterExit=true
 ExecStart=/usr/bin/synaptikscfg init
 
 [Install]
-WantedBy=graphic@%i.target
+WantedBy=graphic@.target

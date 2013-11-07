@@ -1,5 +1,3 @@
-.include need-primary-xserver.service
-
 [Unit]
 Description=D-Bus Session Message Bus
 Requires=basic.target

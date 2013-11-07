@@ -1,7 +1,7 @@
-.include need-xserver@.service
+.include need-session@.service
 
 [Unit]
-Description=Synaptiks GUI on display %I
+Description=Synaptiks GUI for session %I
 After=kdeinit@%i.service synaptikscfg@%i.service
 
 [Service]
@@ -10,4 +10,4 @@ ExecStart=/usr/bin/synaptiks
 Restart=always
 
 [Install]
-WantedBy=graphic@%i.target
+WantedBy=graphic@.target

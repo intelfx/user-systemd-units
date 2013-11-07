@@ -1,7 +1,7 @@
-.include need-xserver@.service
+.include need-session@.service
 
 [Unit]
-Description=KDE initialization on display %I
+Description=KDE initialization for session %I
 Before=kdeinit@%i.target
 Wants=kdeinit@%i.target
 After=dbus.service
@@ -14,4 +14,4 @@ ExecStop=/usr/bin/kdeinit4_shutdown
 TimeoutStopSec=5
 
 [Install]
-WantedBy=graphic@%i.target
+WantedBy=graphic@.target
