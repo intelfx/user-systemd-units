@@ -15,6 +15,7 @@ for file in "/etc/profile" "$HOME/.bash_profile" "/etc/xprofile" "$HOME/.xprofil
 	fi
 done
 
+
 # Load resources
 for file in "/etc/X11/Xresources" "$HOME/.Xresources"; do
     if [[ -f "$file" ]]; then
@@ -78,7 +79,6 @@ systemctl --user start "$systemd_target"
 
 
 # Run the session itself.
-
 echo "Starting session '$session'"
 
 case "$session" in
