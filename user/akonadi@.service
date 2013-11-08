@@ -2,7 +2,7 @@
 
 [Unit]
 Description=Akonadi for session %I
-After=kdeinit@%i.target
+After=kdeinit@%i.target nepomuk@%i.service
 
 [Service]
 Type=forking
