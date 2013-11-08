@@ -29,23 +29,18 @@ done
 for file in "/etc/X11/Xkbmap" "$HOME/.Xkbmap"; do
     if [[ -f "$file" ]]; then
         echo "Loading XKB keymap: $file"
-		setxkbmap $(cat "$file")
-        XKB_IN_USE=yes
+		xargs setxkbmap < "$file"
     fi
 done
 
 
-# Load xmodmap if not using XKB
-if [[ -z "$XKB_IN_USE" ]]; then
-    for file in "/etc/X11/Xmodmap" "$HOME/.Xmodmap"; do
-        if [[ -f "$file" ]]; then
-           echo "Loading X modmap: $file"
-           xmodmap "$file"
-        fi
-    done
-fi
-
-unset XKB_IN_USE
+# Load xmodmap
+for file in "/etc/X11/Xmodmap" "$HOME/.Xmodmap"; do
+	if [[ -f "$file" ]]; then
+	   echo "Loading X modmap: $file"
+	   xmodmap "$file"
+	fi
+done
 
 
 # Run all system xinitrc shell scripts.
