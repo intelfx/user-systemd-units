@@ -7,8 +7,5 @@
 # a externally-baked environment file, setting
 # a dependency to an X server for a service unit and sets its $DISPLAY.
 
-[Unit]
-StopWhenUnneeded=yes
-
 [Service]
 EnvironmentFile=%t/%I-environment
