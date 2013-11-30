@@ -1,0 +1,17 @@
+.include need-session@.service
+
+[Unit]
+Description=tmux for session %I
+Documentation=man:tmux(1)
+Requires=tmux.service
+After=tmux.service
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/tmux -L session-${XDG_SESSION_ID} new-session -s %u-${XDG_SESSION_ID} -d
+ExecStop=-/usr/bin/tmux kill-server
+KillMode=control-group
+Restart=always
+
+[Install]
+WantedBy=graphic@.target

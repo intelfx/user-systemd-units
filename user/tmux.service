@@ -1,5 +1,5 @@
 [Unit]
-Description=Persistent tmux session
+Description=tmux global session
 Documentation=man:tmux(1)
 
 [Service]
