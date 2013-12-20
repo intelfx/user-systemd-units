@@ -9,7 +9,7 @@ After=tmux.service
 [Service]
 Type=forking
 ExecStart=/usr/bin/tmux -L session-${XDG_SESSION_ID} new-session -s %u-${XDG_SESSION_ID} -d
-ExecStop=-/usr/bin/tmux kill-server
+ExecStop=/usr/bin/tmux -L session-${XDG_SESSION_ID} kill-server
 KillMode=control-group
 Restart=always
 
