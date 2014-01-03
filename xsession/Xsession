@@ -72,6 +72,35 @@ printenv > "$systemd_envfile"
 systemctl --user isolate "$systemd_target"
 
 
+function stop_systemd_session() {
+	# Stop the `systemd --user` session.
+	echo "Stopping \`systemd --user\` session"
+
+	systemctl --user stop "$systemd_target"
+	systemctl --user isolate "default.target"
+
+	echo "Waiting for termination of \`systemd --user\` units..."
+
+	# WARNING: this is a hack.
+	# We wait for all display-related units to become inactive.
+	# It would be better to block in systemctl until isolation is complete
+	# (i. e. all enqueued jobs are either finished or failed).
+
+	systemd_termination_timer=0
+	while [[ "$(systemctl --user --no-legend --state active | grep "$systemd_suffix")" ]]; do
+		sleep 1
+		(( systemd_termination_timer++ ))
+	done
+
+	echo "Termination took $systemd_termination_timer seconds"
+
+	rm -f "$systemd_envfile"
+	echo "Session wrapper done"
+}
+
+trap stop_systemd_session EXIT TERM QUIT INT HUP
+
+
 # Run the session itself.
 echo "Starting session '$session'"
 
@@ -89,28 +118,4 @@ case "$session" in
 		;;
 esac
 
-
-# Stop the `systemd --user` session.
-echo "Main application exited, stopping \`systemd --user\` session"
-
-systemctl --user stop "$systemd_target"
-systemctl --user isolate "default.target"
-
-echo "Waiting for termination of \`systemd --user\` units..."
-
-# WARNING: this is a hack.
-# We wait for all display-related units to become inactive.
-# It would be better to block in systemctl until isolation is complete
-# (i. e. all enqueued jobs are either finished or failed).
-
-systemd_termination_timer=0
-while [[ "$(systemctl --user --no-legend --state active | grep "$systemd_suffix")" ]]; do
-	sleep 1
-	(( systemd_termination_timer++ ))
-done
-
-echo "Termination took $systemd_termination_timer seconds"
-
-rm -f "$systemd_envfile"
-
-echo "Session wrapper done"
+echo "Session application exited"
