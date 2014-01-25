@@ -1,3 +1,5 @@
+.include need-session@.target
+
 [Unit]
 Description=Graphical session %I
 Requires=overall.target

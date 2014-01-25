@@ -1,0 +1,11 @@
+
+#
+# Session bridge template for a target unit.
+#
+
+# need-service@.service is a helper template partial unit which
+# configures a session-wide conflict unit.
+
+[Unit]
+Conflicts=exit-session@.target
+After=exit-session@.target

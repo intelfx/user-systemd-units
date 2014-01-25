@@ -5,7 +5,12 @@
 
 # need-service@.service is a helper template partial unit which sources
 # a externally-baked environment file, setting
-# a dependency to an X server for a service unit and sets its $DISPLAY.
+# a dependency to an X server for a service unit and sets its $DISPLAY, and
+# configures a session-wide conflict unit.
+
+[Unit]
+Conflicts=exit-session@.target
+After=exit-session@.target
 
 [Service]
 EnvironmentFile=%t/%I-environment

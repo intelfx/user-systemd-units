@@ -65,6 +65,7 @@ done < <(systemctl --user show-environment)
 systemd_suffix="@${DISPLAY}"
 systemd_envfile="$XDG_RUNTIME_DIR/$DISPLAY-environment"
 systemd_target="graphic${systemd_suffix}.target"
+systemd_exit_target="exit-session${systemd_suffix}.target"
 
 echo "Starting \`systemd --user\` unit $systemd_target"
 
@@ -76,29 +77,12 @@ function stop_systemd_session() {
 	# Stop the `systemd --user` session.
 	echo "Stopping \`systemd --user\` session"
 
-	systemctl --user stop "$systemd_target"
-	systemctl --user isolate "default.target"
-
-	echo "Waiting for termination of \`systemd --user\` units..."
-
-	# WARNING: this is a hack.
-	# We wait for all display-related units to become inactive.
-	# It would be better to block in systemctl until isolation is complete
-	# (i. e. all enqueued jobs are either finished or failed).
-
-	systemd_termination_timer=0
-	while [[ "$(systemctl --user --no-legend --state active | grep "$systemd_suffix")" ]]; do
-		sleep 1
-		(( systemd_termination_timer++ ))
-	done
-
-	echo "Termination took $systemd_termination_timer seconds"
-
+	systemctl --user start "$systemd_exit_target"
 	rm -f "$systemd_envfile"
 	echo "Session wrapper done"
 }
 
-trap stop_systemd_session EXIT TERM QUIT INT HUP
+trap stop_systemd_session EXIT TERM HUP
 
 
 # Run the session itself.

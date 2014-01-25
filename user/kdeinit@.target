@@ -1,3 +1,5 @@
+.include need-session@.target
+
 # A "sync" target: it does not want anything,
 # it's other units who Wants= it and specify
 # Before= or After= on this target
