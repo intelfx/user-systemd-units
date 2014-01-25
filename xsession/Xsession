@@ -86,9 +86,9 @@ trap stop_systemd_session EXIT TERM HUP
 
 
 # Run the session itself.
-echo "Starting session '$session'"
+echo "Starting session '$*'"
 
-case "$session" in
+case "$1" in
 	failsafe)
 		xterm -geometry 80x24-0-0
 		;;
