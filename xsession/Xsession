@@ -6,6 +6,10 @@ exec > >(systemd-cat -t xsession$DISPLAY)
 
 echo "Starting X session (session '$XDG_SESSION_ID' seat '$XDG_SEAT')"
 
+if [[ "$DISPLAY" =~ localhost(:.*) ]]; then
+	DISPLAY="${BASH_REMATCH[1]}"
+	export DISPLAY
+fi
 
 # Load profile
 for file in "/etc/profile" "$HOME/.bash_profile" "/etc/xprofile" "$HOME/.xprofile"; do
