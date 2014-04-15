@@ -1,0 +1,12 @@
+[Unit]
+Requires=sound.target
+After=sound.target
+Description=Shairport AirTunes receiver
+
+[Service]
+EnvironmentFile=/etc/conf.d/shairport
+ExecStart=/usr/bin/shairport -a $AP_NAME $SHAIRPORT_ARGS
+Restart=always
+
+[Install]
+WantedBy=basic.target

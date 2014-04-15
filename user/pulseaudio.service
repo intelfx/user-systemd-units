@@ -1,0 +1,19 @@
+[Unit]
+After=sound.target
+Requires=sound.target
+Description=PulseAudio Sound System
+
+[Service]
+#Type=simple
+Type=dbus
+BusName=org.pulseaudio.Server
+BusName=org.PulseAudio1
+ExecStart=/usr/bin/pulseaudio
+ExecStop=/usr/bin/pulseaudio --kill
+Restart=always
+
+[Install]
+#WantedBy=graphic@.target
+WantedBy=basic.target
+#Alias=dbus-org.PulseAudio1.service
+#Alias=dbus-org.pulseaudio.Server.service
