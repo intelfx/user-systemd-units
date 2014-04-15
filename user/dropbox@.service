@@ -5,7 +5,7 @@ Description=Dropbox daemon for session %I
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/dropboxd
+ExecStart=/home/intelfx/.dropbox-dist/dropboxd
 Restart=always
 
 [Install]
