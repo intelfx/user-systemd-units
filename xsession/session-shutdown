@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# When a type=xremote session completes,
-# the greeter is NOT restarted.
-# Work around this by restarting the whole DM.
-
-systemctl restart lightdm

@@ -1,61 +1,8 @@
 #!/bin/bash
 #
-# LightDM-based wrapper to run around X sessions.
+# A custom session script for `systemd --user` and a WM.
 
-exec > >(systemd-cat -t xsession$DISPLAY)
-
-echo "Starting X session (session '$XDG_SESSION_ID' seat '$XDG_SEAT')"
-
-if [[ "$DISPLAY" =~ localhost(:.*) ]]; then
-	DISPLAY="${BASH_REMATCH[1]}"
-	export DISPLAY
-fi
-
-# Load profile
-for file in "/etc/profile" "$HOME/.bash_profile" "/etc/xprofile" "$HOME/.xprofile"; do
-	if [[ -f "$file" ]]; then
-		echo "Loading profile script: $file"
-		. "$file"
-	fi
-done
-
-
-# Load resources
-for file in "/etc/X11/Xresources" "$HOME/.Xresources"; do
-    if [[ -f "$file" ]]; then
-        echo "Loading X resource: $file"
-        xrdb -merge "$file"
-    fi
-done
-
-
-# Load keymaps
-for file in "/etc/X11/Xkbmap" "$HOME/.Xkbmap"; do
-    if [[ -f "$file" ]]; then
-        echo "Loading XKB keymap: $file"
-		xargs setxkbmap < "$file"
-    fi
-done
-
-
-# Load xmodmap
-for file in "/etc/X11/Xmodmap" "$HOME/.Xmodmap"; do
-	if [[ -f "$file" ]]; then
-	   echo "Loading X modmap: $file"
-	   xmodmap "$file"
-	fi
-done
-
-
-# Run all system xinitrc shell scripts.
-xinitdir="/etc/X11/xinit/xinitrc.d"
-for script in "$xinitdir"/* "$HOME/.xinitrc"; do
-	if [[ -f "$script" && -r "$script" ]]; then
-		echo "Loading xinit script: $script"
-		. "$script"
-	fi
-done
-
+SESSION_APPLICATION=awesome
 
 # Read environment from `systemd --user`.
 echo "Reading \`systemd --user\` environment"
@@ -90,20 +37,8 @@ trap stop_systemd_session EXIT TERM HUP
 
 
 # Run the session itself.
-echo "Starting session '$*'"
+echo "Starting session application '${SESSION_APPLICATION[@]}'"
 
-case "$1" in
-	failsafe)
-		xterm -geometry 80x24-0-0
-		;;
-
-	custom)
-		"$HOME/.xsession"
-		;;
-	
-	*)
-		"$@"
-		;;
-esac
+"${SESSION_APPLICATION[@]}"
 
 echo "Session application exited"
