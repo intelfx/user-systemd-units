@@ -4,7 +4,7 @@ After=sound.target
 Description=Shairport AirTunes receiver
 
 [Service]
-EnvironmentFile=/etc/conf.d/shairport
+EnvironmentFile=%h/.config/shairport
 ExecStart=/usr/bin/shairport -a $AP_NAME $SHAIRPORT_ARGS
 Restart=always
 
