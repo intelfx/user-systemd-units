@@ -5,11 +5,10 @@ Description=Baloo for session %I
 After=kdeinit@%i.target
 
 [Service]
-Type=simple
+Type=forking
 ExecStart=/usr/bin/baloo_file
 
 KillMode=process
-KillSignal=SIGHUP
 
 [Install]
 WantedBy=graphic@.target
