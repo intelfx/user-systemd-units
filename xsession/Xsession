@@ -39,6 +39,11 @@ trap stop_systemd_session EXIT TERM HUP
 # Run the session itself.
 echo "Starting session application '${SESSION_APPLICATION[@]}'"
 
+/usr/lib/kde4/libexec/polkit-kde-authentication-agent-1
+eval "export $(/usr/bin/gnome-keyring-daemon --start)"
+nm-applet &
+xss-lock -l -- "$HOME/bin/lock.sh" &
+
 "${SESSION_APPLICATION[@]}"
 
 echo "Session application exited"
