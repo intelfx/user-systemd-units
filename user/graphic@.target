@@ -2,5 +2,5 @@
 
 [Unit]
 Description=Graphical session %I
-Requires=overall.target
+Requires=default.target
 AllowIsolate=yes

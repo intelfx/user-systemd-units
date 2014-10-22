@@ -10,4 +10,4 @@ KillMode=control-group
 Restart=always
 
 [Install]
-WantedBy=overall.target
+WantedBy=default.target

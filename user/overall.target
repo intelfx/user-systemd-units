@@ -1,7 +1,0 @@
-[Unit]
-Description=Persistent non-session-bound user services
-Requires=basic.target
-AllowIsolate=yes
-
-[Install]
-WantedBy=default.target

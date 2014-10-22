@@ -10,4 +10,4 @@ Restart=always
 RestartSec=2
 
 [Install]
-WantedBy=overall.target
+WantedBy=default.target
