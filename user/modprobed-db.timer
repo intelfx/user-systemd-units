@@ -1,0 +1,9 @@
+[Unit]
+Description=Periodically collect data about loaded modules
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=overall.target

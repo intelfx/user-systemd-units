@@ -1,0 +1,7 @@
+[Unit]
+Description=Collect data about loaded modules
+Documentation=man:modprobe-db(8)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/modprobed-db store
