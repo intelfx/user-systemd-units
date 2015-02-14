@@ -1,5 +1,5 @@
 [Unit]
-Description=D-Bus Session Message Bus
+Description=D-Bus User Message Bus
 Requires=basic.target
 After=dbus.socket
 

@@ -1,6 +1,5 @@
 [Unit]
 After=sound.target
-Requires=sound.target
 Description=PulseAudio Sound System
 
 [Service]

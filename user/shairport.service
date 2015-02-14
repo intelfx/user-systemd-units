@@ -1,7 +1,7 @@
 [Unit]
 Description=Shairport AirTunes receiver
-Requires=sound.target
-After=sound.target
+Requires=pulseaudio.service
+After=pulseaudio.service
 
 [Service]
 EnvironmentFile=%h/.config/shairport
