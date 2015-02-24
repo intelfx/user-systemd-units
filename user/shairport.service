@@ -1,12 +1,11 @@
 [Unit]
 Description=Shairport AirTunes receiver
-Requires=pulseaudio.service
-After=pulseaudio.service
+Requires=pulseaudio.socket
 
 [Service]
 EnvironmentFile=%h/.config/shairport
-ExecStart=/usr/bin/shairport $SHAIRPORT_ARGS
-Restart=always
+ExecStart=/usr/bin/shairport -o pulse $SHAIRPORT_ARGS
+Restart=on-failure
 
 [Install]
-WantedBy=basic.target
+WantedBy=default.target
