@@ -2,6 +2,7 @@
 
 [Unit]
 Description=Synaptiks GUI for session %I
+Requires=kdeinit@%i.service
 After=kdeinit@%i.service synaptikscfg@%i.service
 
 [Service]

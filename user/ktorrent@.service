@@ -2,6 +2,7 @@
 
 [Unit]
 Description=KTorrent for session %I
+Requires=kdeinit@%i.service
 After=kdeinit@%i.target
 
 [Service]

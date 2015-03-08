@@ -2,6 +2,7 @@
 
 [Unit]
 Description=Akonadi for session %I
+Requires=kdeinit@%i.service
 After=kdeinit@%i.target nepomuk@%i.service
 
 [Service]

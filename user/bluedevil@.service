@@ -2,6 +2,7 @@
 
 [Unit]
 Description=Bluedevil for session %I
+Requires=kdeinit@%i.service
 After=kdeinit@%i.target bluetooth.target
 StopWhenUnneeded=yes
 

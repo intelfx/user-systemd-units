@@ -2,6 +2,7 @@
 
 [Unit]
 Description=Klipper for session %I
+Requires=kdeinit@%i.service
 After=kdeinit@%i.target
 
 [Service]

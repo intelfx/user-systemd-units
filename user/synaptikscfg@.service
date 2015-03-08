@@ -2,6 +2,7 @@
 
 [Unit]
 Description=Configure Synaptics touchpad for session %I
+Requires=kdeinit@%i.service
 After=kdeinit@%i.service
 
 [Service]

@@ -4,6 +4,7 @@
 Description=KDE module @MODULE@ for session %I
 Before=kdeinit@%i.target
 Wants=kdeinit@%i.target
+Requires=kdeinit@%i.service
 After=dbus.service kdeinit@%i.service
 
 [Service]
