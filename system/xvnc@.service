@@ -1,27 +1,24 @@
-
-#
-# Minimal Xorg service file - launches Xorg as a service unit
-#
-
-# The Xorg launch helper forks, launches Xorg and waits for Xorg to
-# accept incoming connections to $DISPLAY, and then signals READY
-# to systemd. This guarantees that services that require access to
-# $DISPLAY during the session don't start too early.
-#
-# If you implement a service that requires access to $DISPLAY, you are
-# advised to include the "need-xserver@your-display.service" or
-# "need-xserver@your-display.target".
+# Licensed under GPLv3.
+# Ivan Shapovalov <intelfx100@gmail.com>
 
 [Unit]
-Description=Xvnc server at %I
-Before=x.target
+Description=Xvnc server, display %I
+Documentation=man:Xvnc(1)
+After=systemd-user-sessions.service plymouth-quit-wait.service
 
 [Service]
-Type=notify
-ExecStart=/usr/bin/xorg-launch-helper /usr/bin/Xvnc %I -geometry 1366x768 -rfbwait 30000 -deferUpdate 30 -rfbauth /etc/vnc-passwd
+User=operator
+PAMName=login
+
+ExecStart=/usr/bin/xinit /etc/lightdm/Xsession /home/operator/.xsession -- /usr/bin/Xvnc %I -geometry 1366x768 -rfbauth /etc/vnc-passwd
+ExecStop=/usr/bin/systemctl --user start exit-session@%I.target
+
+Type=simple
 Restart=always
-RestartSec=1
+RestartSec=0
+KillMode=mixed
+
+UtmpIdentifier=%I
 
 [Install]
-Also=x.target
-RequiredBy=x.target
+WantedBy=graphical.target

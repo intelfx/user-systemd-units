@@ -17,16 +17,21 @@ printenv > "$systemd_envfile"
 systemctl --user isolate "$systemd_target"
 
 
-function stop_systemd_session() {
-	# Stop the `systemd --user` session.
-	echo "Stopping \`systemd --user\` session"
+#
+# XXX: this is now achieved via an ExecStop= setting in the X server's unit file.
+# Need to check which approach is better and more correct.
+#
 
-	systemctl --user start "$systemd_exit_target"
-	rm -f "$systemd_envfile"
-	echo "Session wrapper done"
-}
-
-trap stop_systemd_session EXIT TERM HUP
+#function stop_systemd_session() {
+#	# Stop the `systemd --user` session.
+#	echo "Stopping \`systemd --user\` session"
+#
+#	systemctl --user start "$systemd_exit_target"
+#	rm -f "$systemd_envfile"
+#	echo "Session wrapper done"
+#}
+#
+#trap stop_systemd_session EXIT TERM HUP
 
 
 # Run the session itself.
@@ -37,6 +42,4 @@ eval "export $(/usr/bin/gnome-keyring-daemon --start)"
 nm-applet &
 xss-lock -l -- "$HOME/bin/lock.sh" &
 
-"${SESSION_APPLICATION[@]}"
-
-echo "Session application exited"
+exec "${SESSION_APPLICATION[@]}"

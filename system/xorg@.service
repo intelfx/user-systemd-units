@@ -1,0 +1,36 @@
+# Licensed under GPLv3.
+# Ivan Shapovalov <intelfx100@gmail.com>
+
+[Unit]
+Description=Xorg server on tty%I, display :10
+Documentation=man:Xorg(1)
+After=systemd-user-sessions.service plymouth-quit-wait.service
+
+Conflicts=getty@tty%i.service
+After=getty@tty%i.service
+
+[Service]
+User=operator
+PAMName=login
+
+StandardOutput=tty
+StandardInput=tty-fail
+
+ExecStart=/usr/bin/xinit /etc/lightdm/Xsession /home/operator/.xsession -- /usr/bin/Xorg :10 -nolisten tcp -novtswitch vt%I
+ExecStop=/usr/bin/systemctl --user start exit-session@:10.target
+
+Type=simple
+Restart=always
+RestartSec=0
+KillMode=mixed
+
+UtmpIdentifier=:10
+
+TTYPath=/dev/tty%I
+TTYReset=yes
+TTYVHangup=yes
+TTYVTDisallocate=yes
+IgnoreSIGPIPE=no
+
+[Install]
+WantedBy=graphical.target
