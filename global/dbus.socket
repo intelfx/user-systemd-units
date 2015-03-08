@@ -2,7 +2,8 @@
 Description=D-Bus User Message Bus Socket
 
 [Socket]
-ListenStream=%t/dbus/user_bus_socket
+ListenStream=%t/bus
 
 [Install]
 WantedBy=sockets.target
+Also=dbus.service
