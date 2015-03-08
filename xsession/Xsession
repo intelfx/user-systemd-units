@@ -4,13 +4,6 @@
 
 SESSION_APPLICATION=awesome
 
-# Read environment from `systemd --user`.
-echo "Reading \`systemd --user\` environment"
-
-while IFS="=" read name value; do
-	eval "test \$$name || export $name='$value'"
-done < <(systemctl --user show-environment)
-
 
 # Run the `systemd --user` session.
 systemd_suffix="@${DISPLAY}"
