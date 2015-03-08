@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenSSH private key agent
+Wants=environment.target
+Before=environment.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/ssh-agent -a %t/ssh-agent-socket
+ExecStartPost=/usr/bin/systemctl --user set-environment SSH_AUTH_SOCK=%t/ssh-agent-socket
+Restart=on-abort
+
+[Install]
+WantedBy=default.target
