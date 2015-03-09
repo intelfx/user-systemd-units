@@ -1,0 +1,11 @@
+[Unit]
+Description=Shairplay AirTunes receiver
+Requires=pulseaudio.socket
+
+[Service]
+WorkingDirectory=/etc/shairplay
+ExecStart=/usr/bin/shairplay --ao_driver=pulse --ao_deviceid=1 -a %H
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
