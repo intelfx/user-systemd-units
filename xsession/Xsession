@@ -37,6 +37,8 @@ systemctl --user isolate "$systemd_target"
 # Run the session itself.
 echo "Starting session application '${SESSION_APPLICATION[@]}'"
 
+xsetroot -cursor_name left_ptr
+
 /usr/lib/kde4/libexec/polkit-kde-authentication-agent-1
 eval "export $(/usr/bin/gnome-keyring-daemon --start)"
 nm-applet &
