@@ -5,8 +5,9 @@ Before=environment.target
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/ssh-agent -a %t/ssh-agent-socket
-ExecStartPost=/usr/bin/systemctl --user set-environment SSH_AUTH_SOCK=%t/ssh-agent-socket
+ExecStartPre=/usr/bin/mkdir -m700 -p %t/keyring
+ExecStart=/usr/bin/ssh-agent -a %t/keyring/ssh
+ExecStartPost=/usr/bin/systemctl --user set-environment SSH_AUTH_SOCK=%t/keyring/ssh
 Restart=on-abort
 
 [Install]
