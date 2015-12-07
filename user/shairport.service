@@ -1,10 +1,10 @@
 [Unit]
-Description=Shairport AirTunes receiver
+Description=AirPort Express emulator
 Requires=pulseaudio.socket
 
 [Service]
 EnvironmentFile=%h/.config/shairport
-ExecStart=/usr/bin/shairport -o pulse $SHAIRPORT_ARGS
+ExecStart=/usr/bin/shairport-sync -o pulse $SHAIRPORT_ARGS
 Restart=on-failure
 
 [Install]
