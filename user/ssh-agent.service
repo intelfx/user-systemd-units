@@ -1,7 +1,5 @@
 [Unit]
 Description=OpenSSH private key agent
-Wants=environment.target
-Before=environment.target
 
 [Service]
 Type=forking
