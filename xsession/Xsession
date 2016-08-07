@@ -14,7 +14,7 @@ systemd_exit_target="exit-session${systemd_suffix}.target"
 echo "Starting \`systemd --user\` unit $systemd_target"
 
 printenv > "$systemd_envfile"
-systemctl --user isolate "$systemd_target"
+systemctl --user start "$systemd_target"
 
 
 #
