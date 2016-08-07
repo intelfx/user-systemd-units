@@ -3,8 +3,7 @@ Description=AirPort Express emulator
 Requires=pulseaudio.socket
 
 [Service]
-EnvironmentFile=%h/.config/shairport
-ExecStart=/usr/bin/shairport-sync -o pulse $SHAIRPORT_ARGS
+ExecStart=/usr/bin/shairport-sync -o pulse -a "Shairport on %u at %H" --statistics -B "%h/.config/systemd/scripts/shairport-on-start.sh" -E "%h/.config/systemd/scripts/shairport-on-stop.sh" -w
 Restart=on-failure
 
 [Install]
