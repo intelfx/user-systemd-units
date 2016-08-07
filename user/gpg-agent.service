@@ -8,3 +8,4 @@ Restart=on-abort
 
 [Install]
 WantedBy=default.target
+Also=gpg-dirmngr.service

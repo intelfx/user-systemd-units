@@ -1,0 +1,10 @@
+[Unit]
+Description=GnuPG CRL and OSCP daemon
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/dirmngr --daemon --homedir=%h/.gnupg
+Restart=on-abort
+
+[Install]
+WantedBy=default.target
