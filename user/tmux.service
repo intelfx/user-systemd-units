@@ -4,7 +4,7 @@ Documentation=man:tmux(1)
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/tmux new-session -s %u -d
+ExecStart=/usr/bin/tmux new-session -t %u -d
 ExecStop=-/usr/bin/tmux kill-server
 KillMode=control-group
 Restart=always
