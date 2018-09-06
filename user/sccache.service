@@ -1,0 +1,11 @@
+[Unit]
+Description=sccache
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/sccache --start-server
+ExecStop=/usr/bin/sccache --stop-server
+Restart=always
+
+[Install]
+WantedBy=default.target
