@@ -1,0 +1,6 @@
+[Unit]
+Description=Set GNOME color schemes to %I
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/env colorize %I
