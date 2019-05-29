@@ -1,0 +1,10 @@
+[Unit]
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+ExecStart=/usr/bin/mega-cmd-server
+Restart=always
+
+[Install]
+WantedBy=default.target
