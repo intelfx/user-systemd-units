@@ -1,0 +1,13 @@
+[Unit]
+Description=Import environment from ~/.profile and /etc/profile
+DefaultDependencies=no
+Conflicts=shutdown.target
+Before=basic.target shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/env %E/systemd/scripts/import-profile.sh
+
+[Install]
+WantedBy=basic.target
