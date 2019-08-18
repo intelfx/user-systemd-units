@@ -1,0 +1,15 @@
+.include need-session@.service
+
+[Unit]
+Description=KDE module powerdevil for session %I
+Before=kdeinit@%i.target
+Wants=kdeinit@%i.target
+Requires=kdeinit@%i.service
+After=dbus.service kdeinit@%i.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/dbus-send --session --type=method_call --dest=org.kde.kded /kded org.kde.kded.loadModule string:powerdevil
+
+[Install]
+WantedBy=graphic@.target
