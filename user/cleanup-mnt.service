@@ -1,0 +1,9 @@
+[Unit]
+Description=Cleanup ~/mnt
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/find %h/mnt -mindepth 1 -xdev -depth -type d -empty -delete
+
+[Install]
+WantedBy=default.target
