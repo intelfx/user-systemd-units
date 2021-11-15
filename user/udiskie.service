@@ -1,3 +1,6 @@
 [Service]
 Type=simple
-ExecStart=/usr/bin/udiskie --verbose --config %E/udiskie/config.yml
+ExecStart=/usr/bin/udiskie --verbose --config %E/udiskie/config.yml --no-password-prompt --no-notify --no-tray --no-appindicator --no-notify-command --no-file-manager --no-terminal
+
+[Install]
+WantedBy=default.target
