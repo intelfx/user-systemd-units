@@ -15,4 +15,12 @@ done
 
 # don't import an empty $DBUS_SESSION_BUS_ADDRESS
 unset DBUS_SESSION_BUS_ADDRESS
+# in case of UID 0, override bogus $SHELL
+if (( UID == 0 )); then
+	export SHELL="$(getent passwd "$UID" | cut -d: -f7)"
+	if ! [ -n "$SHELL" -a -x "$SHELL" ] || ! grep -Fx "$SHELL" /etc/shells; then
+		unset SHELL
+	fi
+fi
+# FIXME refactor, only import environment variables set by profile scripts
 systemctl --user import-environment
