@@ -1,6 +1,6 @@
 [Service]
 ExecStart=/usr/bin/jupyter notebook --no-browser --log-level=INFO
-Restart=on-failure
+Restart=always
 
 [Install]
 WantedBy=default.target
