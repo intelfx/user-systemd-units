@@ -5,6 +5,8 @@ Documentation=man:tmux(1)
 [Service]
 Type=forking
 ExecStart=/usr/bin/tmux new-session -t %u -d
+# Remove systemd-specific variables from tmux global environment
+ExecStartPost=/usr/bin/tmux set-environment -g -u JOURNAL_STREAM \; set-environment -g -u INVOCATION_ID \; set-environment -g -u MANAGERPID \; set-environment -g -u SYSTEMD_EXEC_PID
 ExecStop=-/usr/bin/tmux kill-server
 KillMode=control-group
 Restart=always
