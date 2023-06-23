@@ -1,0 +1,6 @@
+[Service]
+ExecStart=/usr/bin/jupyter lab --no-browser --log-level=INFO --collaborative
+Restart=always
+
+[Install]
+WantedBy=default.target
