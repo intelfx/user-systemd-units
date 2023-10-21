@@ -1,0 +1,8 @@
+[Unit]
+Wants=network.target network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/devel/ext/linux
+ExecStart=%h/bin/devel/fetch-bcachefs.sh

@@ -1,0 +1,4 @@
+[Timer]
+OnCalendar=hourly
+Persistent=true
+AccuracySec=1min
