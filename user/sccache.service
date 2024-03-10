@@ -8,5 +8,9 @@ ExecStop=/usr/bin/sccache --stop-server
 Restart=always
 SuccessExitStatus=2
 
+Slice=cpu.slice
+CPUSchedulingPolicy=batch
+Nice=18
+
 [Install]
 WantedBy=default.target
