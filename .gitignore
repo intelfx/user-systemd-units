@@ -3,3 +3,4 @@
 /user/sockets.target.wants
 /user/timers.target.wants
 /user/graphic@.target.wants
+/user.control
