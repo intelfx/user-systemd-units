@@ -1,0 +1,6 @@
+[Unit]
+Description=CPU-intensive tasks
+
+[Slice]
+CPUAccounting=true
+MemoryAccounting=true
