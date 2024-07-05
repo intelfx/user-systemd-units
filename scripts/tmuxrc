@@ -1,0 +1,8 @@
+# vim: ft=tmux:
+
+# Remove systemd-specific environment variables from the tmux global environment
+# to avoid leaking them into unrelated child processes (i.e. user shells).
+set-environment -g -u JOURNALD_STREAM
+set-environment -g -u INVOCATION_ID
+set-environment -g -u MANAGERPID
+set-environment -g -u SYSTEMD_EXEC_PID
