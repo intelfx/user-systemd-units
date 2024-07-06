@@ -12,5 +12,10 @@ ExecStop=-/usr/bin/tmux kill-server
 KillMode=control-group
 Restart=always
 
+# Add other specific environment variables intended for tmux server itself
+# NOTE: This file should be kept in sync with scripts/tmuxrc to avoid leaking
+#       them into the shell and other processes
+EnvironmentFile=-%E/systemd/scripts/tmuxenv
+
 [Install]
 WantedBy=default.target

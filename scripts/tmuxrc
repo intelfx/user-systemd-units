@@ -6,3 +6,7 @@ set-environment -g -u JOURNALD_STREAM
 set-environment -g -u INVOCATION_ID
 set-environment -g -u MANAGERPID
 set-environment -g -u SYSTEMD_EXEC_PID
+
+# Remove $LD_PRELOAD and other environment variables intended for tmux itself
+set-environment -g -u LD_PRELOAD
+set-environment -g -u MALLOC_CONF

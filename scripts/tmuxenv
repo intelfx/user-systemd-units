@@ -1,0 +1,4 @@
+# vim: ft=conf:
+
+LD_PRELOAD=/usr/lib/libjemalloc.so
+MALLOC_CONF=abort_conf:true,background_thread:true,metadata_thp:always,thp:always
