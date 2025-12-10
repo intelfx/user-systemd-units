@@ -29,7 +29,10 @@ unset DBUS_SESSION_BUS_ADDRESS
 if [[ $SHELL ]]; then
 	_shell="$(getent passwd "$UID" | cut -d: -f7)"
 	if [[ "$SHELL" != "$_shell" ]] && [[ -x "$_shell" ]] && grep -q -Fx "$_shell" /etc/shells; then
+		echo >&2 "WARNING: bogus \$SHELL=${SHELL@Q} detected, resetting to ${_shell@Q}"
 		export SHELL="$_shell"
+	elif [[ "$SHELL" != "$_shell" ]]; then
+		echo >&2 "WARNING: bogus \$SHELL=${SHELL@Q} detected, not resetting to ${_shell@Q} as it is also bogus"
 	fi
 fi
 
