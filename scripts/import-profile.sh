@@ -25,10 +25,11 @@ done
 unset DBUS_SESSION_BUS_ADDRESS
 
 # in case of UID 0, override bogus $SHELL
-if (( UID == 0 )); then
-	export SHELL="$(getent passwd "$UID" | cut -d: -f7)"
-	if ! [[ "$SHELL" && -x "$SHELL" ]] || ! grep -q -Fx "$SHELL" /etc/shells; then
-		unset SHELL
+# override bogus $SHELL, if set
+if [[ $SHELL ]]; then
+	_shell="$(getent passwd "$UID" | cut -d: -f7)"
+	if [[ "$SHELL" != "$_shell" ]] && [[ -x "$_shell" ]] && grep -q -Fx "$_shell" /etc/shells; then
+		export SHELL="$_shell"
 	fi
 fi
 
