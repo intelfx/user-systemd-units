@@ -42,7 +42,7 @@ env -0 | while IFS='=' read -d '' k v; do
 done
 
 if (( ${#ENV_ADD[@]} > 0 )); then
-	echo "Importing environment modified by /etc/profile:" >&2
-	printf "* %s\n" "${!ENV_ADD[@]}"
+	echo >&2 "Importing environment modified by /etc/profile:"
+	printf >&2 "* %s\n" "${!ENV_ADD[@]}"
 	systemctl --user import-environment "${!ENV_ADD[@]}"
 fi
